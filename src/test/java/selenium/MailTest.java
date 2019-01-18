@@ -2,14 +2,16 @@ package selenium;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import selenium.pages.LoginPage;
+import selenium.pages.MainPage;
 
 public class MailTest {
 
-    LoginPage loginPage;
+    WebDriver driver;
 
     @DataProvider(name = "loginData")
     public Object[][] loginData(){
@@ -21,16 +23,16 @@ public class MailTest {
     @BeforeSuite
     public void testbefore(){
         System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver");
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.navigate().to("https://mail.ru/");
-        loginPage = new LoginPage(driver);
     }
 
     @Test(dataProvider = "loginData")
     public void oneCanLoginToMail(String username, String password){
+        LoginPage loginPage = new LoginPage(driver);
         loginPage.open();
         loginPage.enterCredential(username, password);
-
+        MainPage mainPage = new MainPage(driver);
+        Assert.assertTrue(mainPage.isLogined(username));
     }
 }

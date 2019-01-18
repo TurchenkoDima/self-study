@@ -20,6 +20,5 @@ public abstract class AbstractPage {
 
     public AbstractPage(WebDriver driver){
         this.driver=driver;
-        PageFactory.initElements(driver, this);
     }
 }
