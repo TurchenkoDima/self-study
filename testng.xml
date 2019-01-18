@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite">
+
+    <listeners>
+        <listener class-name="SimpleSuiteListener"/>
+        <listener class-name="SimpleAnnotationTransformer"/>
+    </listeners>
+    <test name="test1">
+        <parameter name="aa" value="1"/>
+        <parameter name="bb" value="2"/>
+
+        <groups>
+            <run>
+                <include name="unit"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="SimpleTest"/>
+            <class name="SecondTestFactory"/>
+        </classes>
+    </test>
+</suite>
