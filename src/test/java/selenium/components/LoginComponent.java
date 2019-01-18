@@ -22,7 +22,12 @@ public class LoginComponent extends AbstractComponent{
 
     public void  enterCredential (String username, String password){
         passwordInput = wait
-                .until((Function<WebDriver, WebElement>) driver-> driver.findElement(By.id("mailbox:password")));
+                .until(new Function<WebDriver, WebElement>()
+                {
+                    public WebElement apply(WebDriver driver) {
+                        return driver.findElement(By.id("foo"));
+                    }
+                });
         usernameInput = wait
                 .until((Function<WebDriver, WebElement>) driver -> driver.findElement(By.id("mailbox:login")));
         usernameInput.clear();

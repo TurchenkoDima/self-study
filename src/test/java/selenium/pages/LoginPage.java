@@ -11,12 +11,9 @@ public class LoginPage extends AbstractPage {
 
     private final String BASE_URL = "https://mail.ru/";
 
-    private LoginComponent loginComponent;
-
     public LoginPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
-        loginComponent = new LoginComponent(driver);
+        //PageFactory.initElements(driver, this);
     }
 
     @Override
@@ -25,6 +22,7 @@ public class LoginPage extends AbstractPage {
     }
 
     public void enterCredential(String username, String password){
+        LoginComponent loginComponent = new LoginComponent(driver);
         loginComponent.enterCredential(username,password);
     }
 

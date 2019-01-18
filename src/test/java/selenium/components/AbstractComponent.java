@@ -15,7 +15,7 @@ public abstract class AbstractComponent {
     public AbstractComponent(WebDriver driver) {
         this.driver = driver;
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(30, TimeUnit.SECONDS)
+                .withTimeout(10, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
     }

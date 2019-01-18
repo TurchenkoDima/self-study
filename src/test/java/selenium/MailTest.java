@@ -8,6 +8,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import selenium.pages.LoginPage;
 import selenium.pages.MainPage;
+import selenium.util.DriverSingleton;
 
 public class MailTest {
 
@@ -22,9 +23,7 @@ public class MailTest {
 
     @BeforeSuite
     public void testbefore(){
-        System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        driver = DriverSingleton.getDriver();
     }
 
     @Test(dataProvider = "loginData")
