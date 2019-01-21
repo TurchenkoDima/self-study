@@ -3,16 +3,14 @@ package selenium;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import selenium.pages.LoginPage;
 import selenium.pages.MainPage;
 import selenium.util.DriverSingleton;
 
 public class MailTest {
 
-    WebDriver driver;
+    private WebDriver driver;
 
     @DataProvider(name = "loginData")
     public Object[][] loginData(){
@@ -33,5 +31,10 @@ public class MailTest {
         loginPage.enterCredential(username, password);
         MainPage mainPage = new MainPage(driver);
         Assert.assertTrue(mainPage.isLogined(username));
+    }
+
+    @AfterSuite
+    public void testafter(){
+        DriverSingleton.closeDriver();
     }
 }

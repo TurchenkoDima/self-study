@@ -11,20 +11,20 @@ import java.util.concurrent.TimeUnit;
 public class DriverSingleton {
 
     private static WebDriver driver;
-    private static final Logger logger = LogManager.getRootLogger();
+    //private static final Logger logger = LogManager.getRootLogger();
 
-    private DriverSingleton(){};
+    private DriverSingleton(){}
 
 
     public static WebDriver getDriver(){
         if (null == driver){
-            System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver");
+            System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver.exe");
             driver = new ChromeDriver();
             driver.manage().window().maximize();
-            driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             driver.manage().window().maximize();
-            logger.info("Browser started");
+            //logger.info("Browser started");
         }
 
         return driver;
